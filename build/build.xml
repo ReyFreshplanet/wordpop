@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="incrementVersionNumber" default="incrementBuildNumber">
+    <description>
+            Increments version number in the file set as parameter in format set as parameter
+    </description>
+
+    <!-- - - - - - - - - - - - - - - - - -
+          target: readVersion
+     - - - - - - - - - - - - - - - - - -->
+    <target name="readVersion">
+        <buildnumber file=".buildNumber"/>
+    </target>
+
+	<!-- =================================
+          target: replaceSourceVersionNumber
+          You can optionally use this target to update the version number in any other files, perhaps some file in your source code
+         ================================= -->
+    
+	<target name="replaceSourceVersionNumber" description="Increments version number by incrementing build number in CoreChatApplication.as">
+        <echo>Build: ${build.number}</echo>
+        <replaceregexp
+        		file    ="../src/com/freshplanet/wordpop/model/GameModel.as"
+                match   ="public var version:String = &quot;(.+)\.[0-9]+&quot;;"
+        		replace ="public var version:String = &quot;0.0.${build.number}&quot;;"
+                byline  ="true" />
+    </target>
+	
+	
+	<!-- =================================
+          target: incrementBuildNumber
+         ================================= -->
+	<target name="incrementBuildNumber" depends="readVersion" description="Increment build number across all related files">
+		<antcall target="replaceSourceVersionNumber"/>
+	</target>
+	
+</project>

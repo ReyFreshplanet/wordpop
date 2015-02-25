@@ -4,6 +4,6 @@ package com.freshplanet.wordpop.model
 
 	public class GameModel extends BaseActor
 	{
-		public var version:String = "0.0.1";
+		public var version:String = "0.0.2";
 	}
 }
