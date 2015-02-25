@@ -20,9 +20,9 @@ package
 		
 		public function wordpop()
 		{
-			stage.align 	= StageAlign.TOP_LEFT;
+			stage.align = StageAlign.TOP_LEFT;
 			stage.scaleMode = StageScaleMode.NO_SCALE;
-			stage.quality	= StageQuality.HIGH;
+			stage.quality = StageQuality.HIGH;
 		}
 		
 		override protected function onAdded():void
