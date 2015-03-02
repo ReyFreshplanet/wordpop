@@ -19,7 +19,7 @@
 	<target name="replaceSourceVersionNumber" description="Increments version number by incrementing build number in CoreChatApplication.as">
         <echo>Build: ${build.number}</echo>
         <replaceregexp
-        		file    ="../src/com/freshplanet/wordpop/model/GameModel.as"
+        		file    ="../src/com/freshplanet/wordpop/model/WordPopModel.as"
                 match   ="public var version:String = &quot;(.+)\.[0-9]+&quot;;"
         		replace ="public var version:String = &quot;0.0.${build.number}&quot;;"
                 byline  ="true" />

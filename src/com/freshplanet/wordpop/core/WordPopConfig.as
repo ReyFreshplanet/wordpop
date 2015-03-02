@@ -1,12 +1,17 @@
 package com.freshplanet.wordpop.core
 {
+	import com.freshplanet.wordpop.api.ILoadDataService;
 	import com.freshplanet.wordpop.api.ITickerService;
 	import com.freshplanet.wordpop.command.InitializeCommand;
+	import com.freshplanet.wordpop.command.LoadInitialDataCommand;
 	import com.freshplanet.wordpop.events.WordPopEvent;
-	import com.freshplanet.wordpop.mediator.ScreenViewMediator;
-	import com.freshplanet.wordpop.model.GameModel;
+	import com.freshplanet.wordpop.mediator.LoadingViewMediator;
+	import com.freshplanet.wordpop.mediator.MainViewMediator;
+	import com.freshplanet.wordpop.model.WordPopModel;
+	import com.freshplanet.wordpop.service.LoadDataService;
 	import com.freshplanet.wordpop.service.TickerService;
-	import com.freshplanet.wordpop.view.ScreenView;
+	import com.freshplanet.wordpop.view.LoadingView;
+	import com.freshplanet.wordpop.view.MainView;
 	
 	import flash.events.IEventDispatcher;
 	
@@ -27,26 +32,29 @@ package com.freshplanet.wordpop.core
 		public function configure():void
 		{
 			// models
-			injector.map(GameModel).asSingleton();
+			injector.map(WordPopModel).asSingleton();
 			
 			// managers
 			
 			// commands
 			commandMap.map(WordPopEvent.INITIALIZE, WordPopEvent).toCommand(InitializeCommand);
+			commandMap.map(WordPopEvent.INITIALIZE_COMPLETE, WordPopEvent).toCommand(LoadInitialDataCommand);
 			
 			// services
 			injector.map(ITickerService).toSingleton(TickerService);
+			injector.map(ILoadDataService).toSingleton(LoadDataService);
 			
 			// mediators
-			mediatorMap.map(ScreenView).toMediator(ScreenViewMediator);
+			mediatorMap.map(MainView).toMediator(MainViewMediator);
+			mediatorMap.map(LoadingView).toMediator(LoadingViewMediator);
 			
 			// startup
-			context.afterInitializing( init );	
+			context.afterInitializing(init);	
 		}
 		
 		private function init():void
 		{
-			dispatcher.dispatchEvent(new WordPopEvent( WordPopEvent.INITIALIZE ));
+			dispatcher.dispatchEvent(new WordPopEvent(WordPopEvent.INITIALIZE));
 		}
 	}
 }

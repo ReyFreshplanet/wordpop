@@ -10,6 +10,8 @@ package com.freshplanet.wordpop.events
 		public static const INITIALIZE_COMPLETE:String = "WordPopEvent.onInitComplete";
 		public static const SHOW_SCREEN:String = "WordPopEvent.onShowSreenRequest";
 		public static const ON_TICK:String = "WordPopEvent.onTick";
+		public static const INITIAL_DATA_PARSE_COMPLETE:String = "WordPopEvent.onInitialDataParseComplete";
+		public static const INITIAL_DATA_LOAD_FAIL:String = "WordPopEvent.onInitialDataLoadFail";
 		
 		public function WordPopEvent(type:String, data:*=null, bubbles:Boolean=false, cancelable:Boolean=false)
 		{

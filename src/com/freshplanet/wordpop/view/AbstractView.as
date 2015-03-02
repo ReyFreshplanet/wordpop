@@ -4,16 +4,32 @@ package com.freshplanet.wordpop.view
 	import flash.events.Event;
 	import flash.events.FullScreenEvent;
 	
-	public class BaseView extends Sprite
+	public class AbstractView extends Sprite
 	{
 		protected var isFullscreen:Boolean;
+		private var _id:String;
 		
-		public function BaseView()
+		public function AbstractView(viewId:String = null)
 		{
-			super();
-			
+			id = viewId;
 			addEventListener( Event.ADDED_TO_STAGE, handleAdded );
 			isFullscreen = false;
+		}
+		
+		public function initialize():void
+		{
+		}
+		
+		public function build():void
+		{
+		}
+		
+		public function clear():void
+		{
+		}
+		
+		public function destroy():void
+		{
 		}
 		
 		private function handleAdded(event:Event):void
@@ -49,5 +65,16 @@ package com.freshplanet.wordpop.view
 		protected function onResize():void{}		
 		protected function onRemoved():void{}		
 		protected function onAdded():void{}
+
+		public function get id():String
+		{
+			return _id;
+		}
+
+		public function set id(value:String):void
+		{
+			_id = value;
+		}
+
 	}
 }

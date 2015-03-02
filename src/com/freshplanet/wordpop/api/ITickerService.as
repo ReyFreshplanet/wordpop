@@ -1,8 +1,7 @@
 package com.freshplanet.wordpop.api
 {
-	public interface ITickerService
+	public interface ITickerService extends IInitializable
 	{
-		function initialize():void;
 		function start():void;
 		function stop():void;
 	}

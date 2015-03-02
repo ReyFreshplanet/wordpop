@@ -1,7 +1,7 @@
 package
 {
 	import com.freshplanet.wordpop.core.WordPopConfig;
-	import com.freshplanet.wordpop.view.BaseView;
+	import com.freshplanet.wordpop.view.AbstractView;
 	
 	import flash.display.StageAlign;
 	import flash.display.StageQuality;
@@ -11,15 +11,17 @@ package
 	import robotlegs.bender.extensions.contextView.ContextView;
 	import robotlegs.bender.framework.api.IContext;
 	import robotlegs.bender.framework.impl.Context;
-	import com.freshplanet.wordpop.view.ScreenView;
+	import com.freshplanet.wordpop.view.MainView;
 	
 	[SWF(frameRate="60", width="640", height="960", backgroundColor="#FFFFFF")]
-	public class wordpop extends BaseView
+	public class wordpop extends AbstractView
 	{
 		private var context:IContext;
 		
 		public function wordpop()
 		{
+			super(null);
+			
 			stage.align = StageAlign.TOP_LEFT;
 			stage.scaleMode = StageScaleMode.NO_SCALE;
 			stage.quality = StageQuality.HIGH;
@@ -33,8 +35,8 @@ package
 		
 		private function createChildren():void
 		{
-			var screenView:ScreenView = new ScreenView();
-			addChild( screenView );
+			var main:MainView = new MainView();
+			addChild( main );
 		}
 	}
 }

@@ -1,6 +1,6 @@
 package com.freshplanet.wordpop.api
 {
-	public interface IScreen
+	public interface IView
 	{
 		function initialize():void;
 		function build():void;
