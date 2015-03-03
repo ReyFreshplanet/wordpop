@@ -12,6 +12,7 @@ package com.freshplanet.wordpop.core
 	import com.freshplanet.wordpop.service.TickerService;
 	import com.freshplanet.wordpop.view.LoadingView;
 	import com.freshplanet.wordpop.view.MainView;
+	import com.greensock.TweenMax;
 	
 	import flash.events.IEventDispatcher;
 	
@@ -49,12 +50,12 @@ package com.freshplanet.wordpop.core
 			mediatorMap.map(LoadingView).toMediator(LoadingViewMediator);
 			
 			// startup
-			context.afterInitializing(init);	
+			context.afterInitializing(init);
 		}
 		
 		private function init():void
 		{
-			dispatcher.dispatchEvent(new WordPopEvent(WordPopEvent.INITIALIZE));
+			TweenMax.delayedCall(0.1, dispatcher.dispatchEvent, [new WordPopEvent(WordPopEvent.INITIALIZE)]);
 		}
 	}
 }

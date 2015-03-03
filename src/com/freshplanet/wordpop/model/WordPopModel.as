@@ -12,7 +12,7 @@ package com.freshplanet.wordpop.model
 	{
 		[Inject] public var dispatcher:IEventDispatcher;
 		
-		public var version:String = "0.0.32";
+		public var version:String = "0.0.41";
 		public var dataUrl:String = "./data/wordpop_sample_categories.json";
 		public var views:Dictionary;
 		public var initialGameData:Object;
@@ -46,12 +46,14 @@ package com.freshplanet.wordpop.model
 		{
 			if(_currentView != value)
 			{
+				log(this, "setting current view to", value);
+				
 				_currentView = value;
 				dispatcher.dispatchEvent(new WordPopEvent(WordPopEvent.SHOW_SCREEN, {id:value, view:views[value]}));
 			}
 			else
 			{
-				log(this, "this view is aleady showing.");
+				log(this, value, "is aleady showing.");
 			}
 		}
 	}
