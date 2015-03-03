@@ -1,13 +1,13 @@
 package com.freshplanet.wordpop.service
 {
-	import com.freshplanet.wordpop.api.ITickerService;
+	import com.freshplanet.wordpop.api.IGameTimerService;
 	import com.freshplanet.wordpop.events.WordPopEvent;
 	
 	import flash.events.IEventDispatcher;
 	import flash.events.TimerEvent;
 	import flash.utils.Timer;
 	
-	public class TickerService implements ITickerService
+	public class GameTimerService implements IGameTimerService
 	{
 		[Inject] public var dispatcher:IEventDispatcher;
 		

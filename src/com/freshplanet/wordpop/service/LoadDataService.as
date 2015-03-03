@@ -3,6 +3,7 @@ package com.freshplanet.wordpop.service
 	import com.freshplanet.wordpop.api.ILoadDataService;
 	import com.freshplanet.wordpop.data.CategoryVO;
 	import com.freshplanet.wordpop.events.WordPopEvent;
+	import com.freshplanet.wordpop.model.CategoryModel;
 	import com.freshplanet.wordpop.model.WordPopModel;
 	import com.greensock.events.LoaderEvent;
 	import com.greensock.loading.DataLoader;
@@ -12,7 +13,7 @@ package com.freshplanet.wordpop.service
 	public class LoadDataService implements ILoadDataService
 	{
 		[Inject] public var dispatcher:IEventDispatcher;
-		[Inject] public var model:WordPopModel;
+		[Inject] public var categoryModel:CategoryModel;
 		
 		private var dataLoader:DataLoader;
 		private var dataUrl:String;
@@ -44,11 +45,11 @@ package com.freshplanet.wordpop.service
 		private function parse(data:String):void
 		{
 			var initialGameData:Object = JSON.parse(data);
-			model.categories = new Vector.<CategoryVO>();
+			categoryModel.categories = new Vector.<CategoryVO>();
 			
 			for(var category:String in initialGameData)
 			{
-				model.categories.push(new CategoryVO(category, initialGameData[category]));	
+				categoryModel.categories.push(new CategoryVO(category, initialGameData[category]));	
 			}
 			
 			dispatcher.dispatchEvent(new WordPopEvent(WordPopEvent.INITIAL_DATA_PARSE_COMPLETE));

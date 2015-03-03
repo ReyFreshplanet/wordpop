@@ -4,7 +4,7 @@ package com.freshplanet.wordpop.events
 	
 	public class WordPopEvent extends Event
 	{
-		private var _data:*;
+		protected var _data:*;
 		
 		public static const INITIALIZE:String = "WordPopEvent.onInitBegin";
 		public static const INITIALIZE_COMPLETE:String = "WordPopEvent.onInitComplete";

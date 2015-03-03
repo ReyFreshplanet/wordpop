@@ -1,8 +1,9 @@
 package com.freshplanet.wordpop.model
 {
 	import com.freshplanet.wordpop.api.IView;
-	import com.freshplanet.wordpop.data.CategoryVO;
 	import com.freshplanet.wordpop.events.WordPopEvent;
+	import com.freshplanet.wordpop.view.GameView;
+	import com.freshplanet.wordpop.view.HomeView;
 	import com.freshplanet.wordpop.view.LoadingView;
 	
 	import flash.events.IEventDispatcher;
@@ -11,19 +12,23 @@ package com.freshplanet.wordpop.model
 	public class WordPopModel
 	{
 		[Inject] public var dispatcher:IEventDispatcher;
+		[Inject] public var categoryModel:CategoryModel;
 		
-		public var version:String = "0.0.41";
+		public var version:String = "0.0.53";
 		public var dataUrl:String = "./data/wordpop_sample_categories.json";
 		public var views:Dictionary;
 		public var initialGameData:Object;
-		public var categories:Vector.<CategoryVO>;
 		
 		private var _currentView:String;
 		
 		public function initialize():void
 		{
 			var viewArray:Array = [];
-			viewArray.push({key:ViewNames.LOADING_VIEW, value:new LoadingView( ViewNames.LOADING_VIEW )});
+			viewArray.push(
+				{key:ViewNames.LOADING_VIEW, value:new LoadingView( ViewNames.LOADING_VIEW )},
+				{key:ViewNames.HOME_VIEW, value:new HomeView( ViewNames.HOME_VIEW )},
+				{key:ViewNames.GAME_VIEW, value:new GameView( ViewNames.GAME_VIEW )}
+			);
 			
 			views = new Dictionary();
 			

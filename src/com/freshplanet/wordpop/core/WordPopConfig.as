@@ -1,15 +1,21 @@
 package com.freshplanet.wordpop.core
 {
+	import com.freshplanet.wordpop.api.IGameTimerService;
 	import com.freshplanet.wordpop.api.ILoadDataService;
-	import com.freshplanet.wordpop.api.ITickerService;
 	import com.freshplanet.wordpop.command.InitializeCommand;
 	import com.freshplanet.wordpop.command.LoadInitialDataCommand;
+	import com.freshplanet.wordpop.command.StartGameCommand;
 	import com.freshplanet.wordpop.events.WordPopEvent;
+	import com.freshplanet.wordpop.mediator.GameViewMediator;
+	import com.freshplanet.wordpop.mediator.HomeViewMediator;
 	import com.freshplanet.wordpop.mediator.LoadingViewMediator;
 	import com.freshplanet.wordpop.mediator.MainViewMediator;
+	import com.freshplanet.wordpop.model.CategoryModel;
 	import com.freshplanet.wordpop.model.WordPopModel;
+	import com.freshplanet.wordpop.service.GameTimerService;
 	import com.freshplanet.wordpop.service.LoadDataService;
-	import com.freshplanet.wordpop.service.TickerService;
+	import com.freshplanet.wordpop.view.GameView;
+	import com.freshplanet.wordpop.view.HomeView;
 	import com.freshplanet.wordpop.view.LoadingView;
 	import com.freshplanet.wordpop.view.MainView;
 	import com.greensock.TweenMax;
@@ -36,18 +42,22 @@ package com.freshplanet.wordpop.core
 			injector.map(WordPopModel).asSingleton();
 			
 			// managers
+			injector.map(CategoryModel).asSingleton();
 			
 			// commands
 			commandMap.map(WordPopEvent.INITIALIZE, WordPopEvent).toCommand(InitializeCommand);
 			commandMap.map(WordPopEvent.INITIALIZE_COMPLETE, WordPopEvent).toCommand(LoadInitialDataCommand);
+			commandMap.map(WordPopEvent.INITIAL_DATA_PARSE_COMPLETE, WordPopEvent).toCommand(StartGameCommand);
 			
 			// services
-			injector.map(ITickerService).toSingleton(TickerService);
+			injector.map(IGameTimerService).toSingleton(GameTimerService);
 			injector.map(ILoadDataService).toSingleton(LoadDataService);
 			
 			// mediators
 			mediatorMap.map(MainView).toMediator(MainViewMediator);
 			mediatorMap.map(LoadingView).toMediator(LoadingViewMediator);
+			mediatorMap.map(HomeView).toMediator(HomeViewMediator);
+			mediatorMap.map(GameView).toMediator(GameViewMediator);
 			
 			// startup
 			context.afterInitializing(init);

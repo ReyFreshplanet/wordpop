@@ -4,6 +4,7 @@ package com.freshplanet.wordpop.data
 	{
 		public var name:String;
 		public var phrases:Vector.<PhraseVO>;
+		public var empty:Boolean;
 		
 		public function CategoryVO(name:String, phrasesArray:Array)
 		{
@@ -18,6 +19,11 @@ package com.freshplanet.wordpop.data
 			{
 				phrases.push(new PhraseVO(a, phrasesArray[a]));
 			}
+		}
+		
+		public function get isEmpty():Boolean
+		{
+			return phrases.length == 0;
 		}
 	}
 }
