@@ -6,7 +6,12 @@ package com.freshplanet.wordpop.view
 	{
 		private var currentView:IView;
 		
-		public function showScreen(screen:IView, data:Object = null):void
+		public function MainView()
+		{
+			
+		}
+		
+		public function showScreen(screen:IView):void
 		{
 			if(currentView)
 				clearCurrentScreen();

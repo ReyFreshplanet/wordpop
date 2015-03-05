@@ -6,6 +6,7 @@ package com.freshplanet.wordpop.events
 	{
 		public static const PLAY_GAME_REQUEST:String = "ViewEvent.onPlayGameRequest";
 		public static const BUILD_COMPLETE:String = "ViewEvent.onBuildComplete";
+		public static const SHUFFLE_CATEGORIES_REQUEST:String = "ViewEvent.onShuffleCategoriesRequest";
 		
 		public function ViewEvent(type:String, data:*=null, bubbles:Boolean=false, cancelable:Boolean=false)
 		{

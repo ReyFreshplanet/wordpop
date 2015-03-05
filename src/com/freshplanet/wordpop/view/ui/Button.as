@@ -5,11 +5,12 @@ package com.freshplanet.wordpop.view.ui
 	import flash.display.Sprite;
 	import flash.events.MouseEvent;
 	
-	public class WPSimpleButton extends Sprite implements IButton
+	public class Button extends Sprite implements IButton
 	{
-		private var label:WPLabel;
+		private var label:Label;
+		private var onClickMethod:Function;
 		
-		public function WPSimpleButton(label:String, color:uint = 0xFFFFFF, numWidth:Number = 100, numHeight:Number = 40)
+		public function Button(label:String, color:uint = 0xFFFFFF, numWidth:Number = 100, numHeight:Number = 40, labelWidthRatio:Number = 0.50)
 		{
 			graphics.clear();
 			graphics.beginFill(color);
@@ -17,11 +18,16 @@ package com.freshplanet.wordpop.view.ui
 			graphics.drawRect(0, 0, numWidth, numHeight);
 			graphics.endFill();
 			
-			this.label = new WPLabel(label); 
-			this.label.width = numWidth - 10;
+			this.label = new Label(label); 
+			this.label.width = numWidth * labelWidthRatio;
 			this.label.x = (numWidth - this.label.width) * 0.5;
 			this.label.y = (numHeight - this.label.height) * 0.5;
 			addChild( this.label );
+		}
+		
+		public function get text():String
+		{
+			return label.text;
 		}
 		
 		public function set onClick(value:Function):void
@@ -29,11 +35,14 @@ package com.freshplanet.wordpop.view.ui
 			mouseChildren = false;
 			buttonMode = true;
 			useHandCursor = true;
+			onClickMethod = value;
 			
-			addEventListener(MouseEvent.CLICK, function(e:MouseEvent):void
-			{
-				value.call();
-			});
+			addEventListener(MouseEvent.CLICK, handleClick);
+		}
+		
+		protected function handleClick(event:MouseEvent):void
+		{
+			onClickMethod.call(null, this);
 		}
 	}
 }

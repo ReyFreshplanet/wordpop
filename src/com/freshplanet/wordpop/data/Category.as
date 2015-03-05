@@ -2,35 +2,35 @@ package com.freshplanet.wordpop.data
 {
 	import com.freshplanet.wordpop.MathUtil;
 
-	public class CategoryVO
+	public class Category
 	{
 		public var name:String;
-		public var phrases:Vector.<PhraseVO>;
-		public var usedPhrases:Vector.<PhraseVO>;
+		public var phrases:Vector.<Phrase>;
+		public var usedPhrases:Vector.<Phrase>;
 		
-		public function CategoryVO(name:String, phrasesArray:Array)
+		public function Category(name:String, phrasesArray:Array)
 		{
 			this.name = name;
 			parsePhrases(phrasesArray);
-			usedPhrases = new Vector.<PhraseVO>();
+			usedPhrases = new Vector.<Phrase>();
 		}
 		
 		private function parsePhrases(phrasesArray:Array):void
 		{
-			phrases = new Vector.<PhraseVO>();
+			phrases = new Vector.<Phrase>();
 			for (var a:int = 0; a < phrasesArray.length; a++) 
 			{
-				phrases.push(new PhraseVO(a, phrasesArray[a], name));
+				phrases.push(new Phrase(a, phrasesArray[a], name));
 			}
 		}
 		
-		public function getRandomPhrase():PhraseVO
+		public function getRandomPhrase():Phrase
 		{
 			if(isEmpty)
 				return null;
 			
 			var index:int = MathUtil.randomRange(0, phrases.length-1);
-			var phrase:PhraseVO = phrases.splice(index, 1)[0];
+			var phrase:Phrase = phrases.splice(index, 1)[0];
 			phrase.used = true;
 			
 			usedPhrases.push(phrase);

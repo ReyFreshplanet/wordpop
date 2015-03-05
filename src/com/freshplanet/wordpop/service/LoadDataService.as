@@ -1,7 +1,7 @@
 package com.freshplanet.wordpop.service
 {
 	import com.freshplanet.wordpop.api.ILoadDataService;
-	import com.freshplanet.wordpop.data.CategoryVO;
+	import com.freshplanet.wordpop.data.Category;
 	import com.freshplanet.wordpop.events.WordPopEvent;
 	import com.freshplanet.wordpop.model.CategoryModel;
 	import com.freshplanet.wordpop.model.WordPopModel;
@@ -45,11 +45,11 @@ package com.freshplanet.wordpop.service
 		private function parse(data:String):void
 		{
 			var initialGameData:Object = JSON.parse(data);
-			categoryModel.categories = new Vector.<CategoryVO>();
+			categoryModel.categories = new Vector.<Category>();
 			
 			for(var category:String in initialGameData)
 			{
-				categoryModel.categories.push(new CategoryVO(category, initialGameData[category]));	
+				categoryModel.categories.push(new Category(category, initialGameData[category]));	
 			}
 			
 			dispatcher.dispatchEvent(new WordPopEvent(WordPopEvent.INITIAL_DATA_PARSE_COMPLETE));

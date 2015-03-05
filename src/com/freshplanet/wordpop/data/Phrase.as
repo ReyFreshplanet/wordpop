@@ -1,6 +1,6 @@
 package com.freshplanet.wordpop.data
 {
-	public class PhraseVO
+	public class Phrase
 	{
 		public var id:int;
 		public var text:String;
@@ -9,7 +9,7 @@ package com.freshplanet.wordpop.data
 		public var category:String;
 		public var used:Boolean = false;
 		
-		public function PhraseVO(id:int, text:String, category:String)
+		public function Phrase(id:int, text:String, category:String)
 		{
 			this.id = id;
 			this.category = category;
