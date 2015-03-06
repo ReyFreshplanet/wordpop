@@ -23,15 +23,25 @@ package com.freshplanet.wordpop.view
 		
 		public function setCategories(categories:Array):void
 		{
-			startButton = new Button("Shuffle!", 0x00FF00, 250, 60, 0.5);
-			startButton.onClick = shuffleCategoriesRequest;
-			addChild( startButton );
+			if(!startButton)
+			{
+				startButton = new Button("Shuffle!", 0x00FF00, 250, 60, 0.5);
+				startButton.onClick = shuffleCategoriesRequest;
+				addChild( startButton );
+				
+				startButton.x = (stage.stageWidth - startButton.width) * 0.5;
+				startButton.y = stage.stageHeight - startButton.height - 50;
+			}
 			
-			startButton.x = (stage.stageWidth - startButton.width) * 0.5;
-			startButton.y = stage.stageHeight - startButton.height - 50;
-			
-			buttonContainer = new Sprite();
-			addChild(buttonContainer);
+			if(!buttonContainer)
+			{
+				buttonContainer = new Sprite();
+				addChild(buttonContainer);
+			}
+			else
+			{
+				buttonContainer.removeChildren();
+			}
 			
 			var button:Button;
 			for (var a:int = 0; a < categories.length; a++) 
@@ -49,13 +59,11 @@ package com.freshplanet.wordpop.view
 		
 		private function handleCategorySelected(button:Button):void
 		{
-			log(this, "play game request");
 			dispatchEvent(new ViewEvent(ViewEvent.PLAY_GAME_REQUEST, button.text));
 		}
 		
 		private function shuffleCategoriesRequest(button:Button):void
 		{
-			log(this, "shuffle categories request");
 			dispatchEvent(new ViewEvent(ViewEvent.SHUFFLE_CATEGORIES_REQUEST));
 		}
 	}

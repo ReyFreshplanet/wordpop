@@ -1,5 +1,7 @@
 package com.freshplanet.wordpop.view.ui
 {
+	import com.freshplanet.wordpop.utils.UIUtils;
+	
 	import flash.display.Sprite;
 	
 	public class Letter extends Sprite
@@ -39,6 +41,16 @@ package com.freshplanet.wordpop.view.ui
 		public function get value():String
 		{
 			return label.text;
+		}
+		
+		public function clear():void
+		{
+			if(label)
+			{
+				label.clear();
+				UIUtils.clearDisplayObject(label);
+				label = null;
+			}
 		}
 	}
 }

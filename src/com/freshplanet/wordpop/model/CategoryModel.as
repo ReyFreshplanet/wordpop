@@ -47,10 +47,15 @@ package com.freshplanet.wordpop.model
 			return phrases;
 		}
 		
-		public function getCategoryLabels():Array
+		public function getCategoryLabels(count:int = 0):Array
 		{
+			categories.sort(randomSort);
+			
+			count = count <= 0 ? categories.length : count;
+			count = count > categories.length ? categories.length : count;
+			
 			var labels:Array = [];
-			for (var a:int = 0; a < categories.length; a++) 
+			for (var a:int = 0; a < count; a++) 
 			{
 				labels.push( categories[a].name );
 			}
@@ -69,6 +74,12 @@ package com.freshplanet.wordpop.model
 				}
 			}
 			return category;
+		}
+		
+		private function randomSort(a:*, b:*):Number
+		{
+			if (Math.random() < 0.5) return -1;
+			else return 1;
 		}
 	}
 }

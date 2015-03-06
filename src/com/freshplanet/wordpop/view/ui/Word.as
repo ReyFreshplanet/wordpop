@@ -7,6 +7,7 @@ package com.freshplanet.wordpop.view.ui
 	public class Word extends Sprite
 	{
 		private const letterSpacing:int = 2;
+		private const vowels:Array = ["a", "e", "i", "o", "u"];
 		
 		private var value:String;
 		private var letters:Vector.<Letter>;
@@ -49,6 +50,17 @@ package com.freshplanet.wordpop.view.ui
 			for (var a:int = 0; a < letters.length; a++) 
 			{
 				revealLetter(a);
+			}
+		}
+		
+		public function revealVowels():void
+		{
+			for (var a:int = 0; a < letters.length; a++) 
+			{
+				if( vowels.indexOf(letters[a].value.toLowerCase()) > -1 )
+				{
+					revealLetter(a);
+				}
 			}
 		}
 		
@@ -95,6 +107,19 @@ package com.freshplanet.wordpop.view.ui
 		{
 			return letters.length;
 		}
-
+		
+		public function get text():String
+		{
+			return value;
+		}
+		
+		public function clear():void
+		{
+			for (var a:int = 0; a < letters.length; a++) 
+			{
+				letters[a].clear();
+			}
+			letters = null;
+		}
 	}
 }

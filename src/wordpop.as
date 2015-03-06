@@ -3,7 +3,7 @@ package
 	import com.freshplanet.wordpop.core.WordPopConfig;
 	import com.freshplanet.wordpop.utils.UIUtils;
 	import com.freshplanet.wordpop.view.AbstractView;
-	import com.freshplanet.wordpop.view.MainView;
+	import com.freshplanet.wordpop.view.ScreenContainerView;
 	
 	import flash.display.StageAlign;
 	import flash.display.StageQuality;
@@ -41,7 +41,7 @@ package
 		
 		private function createChildren():void
 		{
-			var main:MainView = new MainView();
+			var main:ScreenContainerView = new ScreenContainerView();
 			addChild( main );
 		}
 	}

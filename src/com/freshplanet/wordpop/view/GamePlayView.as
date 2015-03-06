@@ -8,13 +8,14 @@ package com.freshplanet.wordpop.view
 	import com.freshplanet.wordpop.view.ui.PhraseContainer;
 	import com.freshplanet.wordpop.view.ui.PhraseIndicator;
 	import com.freshplanet.wordpop.view.ui.TimerBar;
+	import com.freshplanet.wordpop.view.ui.Word;
 	
 	import flash.display.Sprite;
 	
 	import nid.ui.controls.VirtualKeyBoard;
 	import nid.ui.controls.vkb.KeyBoardEvent;
 	
-	public class GameView extends AbstractView implements IView
+	public class GamePlayView extends AbstractView implements IView
 	{
 		private const TOTAL_TIME:int = 30;
 		
@@ -30,7 +31,7 @@ package com.freshplanet.wordpop.view
 		private var questionIndicatorContainer:Sprite;
 		private var revealInterval:Number;
 		
-		public function GameView(viewId:String=null)
+		public function GamePlayView(viewId:String=null)
 		{
 			active = false;
 			super(viewId);
@@ -46,34 +47,6 @@ package com.freshplanet.wordpop.view
 		{
 			_phrases = value;
 			nextPhrase();
-		}
-		
-		public function updateTimer():void
-		{
-			if(active)
-			{
-				if(phraseContainer && revealInterval == 0)
-				{
-					revealInterval = Math.ceil(TOTAL_TIME/phraseContainer.numLetters);
-				}
-				
-				currentTime--;
-				timerBar.percent = currentTime/TOTAL_TIME;
-				
-				if(currentTime % revealInterval == 0)
-				{
-					phraseContainer.revealRandomLetter();
-				}
-				
-				if(currentTime == 0 || phraseContainer.allLetersRevealed)
-					doRoundCompleted();
-			}
-		}
-		
-		private function doRoundCompleted():void
-		{
-			active = false;
-			phraseContainer.revealAllLetters();
 		}
 		
 		private function nextPhrase():void
@@ -92,6 +65,53 @@ package com.freshplanet.wordpop.view
 			buildVirtualKeyboard();
 			
 			active = true;
+		}
+		
+		public function updateTimer():void
+		{
+			if(active)
+			{
+				if(phraseContainer && revealInterval == 0)
+				{
+					revealInterval = Math.ceil(TOTAL_TIME/phraseContainer.numLetters);
+				}
+				
+				currentTime--;
+				timerBar.currentTime = currentTime;
+				
+				if(currentTime % revealInterval == 0)
+				{
+					phraseContainer.revealRandomLetter();
+				}
+				
+				if(currentTime == 0 || phraseContainer.allLetersRevealed)
+					doRoundCompleted(false, true);
+			}
+		}
+		
+		private function doRoundCompleted(winner:Boolean = false, doNextPhrase:Boolean = false):void
+		{
+			active = false;
+			
+			if(!winner)
+			{
+				
+			}
+			else
+			{
+				
+			}
+			
+			if(doNextPhrase)
+			{
+				
+			}
+			else
+			{
+				
+			}
+			
+			//phraseContainer.revealAllLetters();
 		}
 		
 		private function buildPhraseIndicators():void
@@ -137,6 +157,7 @@ package com.freshplanet.wordpop.view
 				UIUtils.clearDisplayObject(timerBar);
 			
 			timerBar = new TimerBar(phraseContainer.width);
+			timerBar.totalTime = TOTAL_TIME;
 			timerBar.x = phraseContainer.x;
 			timerBar.y = categoryTitle.y + categoryTitle.height + 25;
 			addChild(timerBar);
@@ -171,7 +192,42 @@ package com.freshplanet.wordpop.view
 		
 		protected function handleAnswerSubmit(event:KeyBoardEvent):void
 		{
-			log(this, VirtualKeyBoard.getInstance().keyboard.inputArea.targetField.text );
+			var userSubmittedPhrase:String = VirtualKeyBoard.getInstance().keyboard.inputArea.targetField.text;
+			var userWords:Array = getCleanWordArray(userSubmittedPhrase);
+			var phraseWords:Vector.<Word> = phraseContainer.getCurrentWrds();
+			
+			if(userWords.length != phraseWords.length)
+			{
+				doRoundCompleted(false);
+				return;
+			}
+			
+			for (var a:int = 0; a < phraseContainer.numWords; a++) 
+			{
+				if(phraseWords[a].text != userWords[a])
+				{
+					doRoundCompleted(false);
+					return;
+				}
+			}
+			
+			doRoundCompleted(true, true);
+		}
+		
+		private function getCleanWordArray(userSubmittedPhrase:String):Array
+		{
+			var returnArr:Array = [];
+			var dirtyArray:Array = userSubmittedPhrase.split(" ");
+			var rex:RegExp = /[\s\r\n]+/gim;
+			var part:String;
+			
+			for (var a:int = 0; a < dirtyArray.length; a++) 
+			{
+				part = dirtyArray[a].replace(rex,"");
+				returnArr.push(part);
+			}
+			
+			return returnArr;
 		}
 		
 		override public function clear():void

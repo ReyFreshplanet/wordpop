@@ -2,13 +2,13 @@ package com.freshplanet.wordpop.mediator
 {
 	import com.freshplanet.wordpop.api.IView;
 	import com.freshplanet.wordpop.events.WordPopEvent;
-	import com.freshplanet.wordpop.view.MainView;
+	import com.freshplanet.wordpop.view.ScreenContainerView;
 	
 	import robotlegs.bender.bundles.mvcs.Mediator;
 	
-	public class MainViewMediator extends Mediator
+	public class ScreenContainerViewMediator extends Mediator
 	{
-		[Inject] public var view:MainView;
+		[Inject] public var view:ScreenContainerView;
 		
 		override public function initialize():void
 		{

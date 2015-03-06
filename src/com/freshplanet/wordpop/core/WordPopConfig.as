@@ -9,15 +9,15 @@ package com.freshplanet.wordpop.core
 	import com.freshplanet.wordpop.mediator.GameViewMediator;
 	import com.freshplanet.wordpop.mediator.HomeViewMediator;
 	import com.freshplanet.wordpop.mediator.LoadingViewMediator;
-	import com.freshplanet.wordpop.mediator.MainViewMediator;
+	import com.freshplanet.wordpop.mediator.ScreenContainerViewMediator;
 	import com.freshplanet.wordpop.model.CategoryModel;
 	import com.freshplanet.wordpop.model.WordPopModel;
 	import com.freshplanet.wordpop.service.GameTimerService;
 	import com.freshplanet.wordpop.service.LoadDataService;
-	import com.freshplanet.wordpop.view.GameView;
+	import com.freshplanet.wordpop.view.GamePlayView;
 	import com.freshplanet.wordpop.view.HomeView;
 	import com.freshplanet.wordpop.view.LoadingView;
-	import com.freshplanet.wordpop.view.MainView;
+	import com.freshplanet.wordpop.view.ScreenContainerView;
 	import com.greensock.TweenMax;
 	
 	import flash.events.IEventDispatcher;
@@ -54,10 +54,10 @@ package com.freshplanet.wordpop.core
 			injector.map(ILoadDataService).toSingleton(LoadDataService);
 			
 			// mediators
-			mediatorMap.map(MainView).toMediator(MainViewMediator);
+			mediatorMap.map(ScreenContainerView).toMediator(ScreenContainerViewMediator);
 			mediatorMap.map(LoadingView).toMediator(LoadingViewMediator);
 			mediatorMap.map(HomeView).toMediator(HomeViewMediator);
-			mediatorMap.map(GameView).toMediator(GameViewMediator);
+			mediatorMap.map(GamePlayView).toMediator(GameViewMediator);
 			
 			// startup
 			context.afterInitializing(init);

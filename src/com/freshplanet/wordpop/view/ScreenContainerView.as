@@ -2,14 +2,9 @@ package com.freshplanet.wordpop.view
 {
 	import com.freshplanet.wordpop.api.IView;
 
-	public class MainView extends AbstractView
+	public class ScreenContainerView extends AbstractView
 	{
 		private var currentView:IView;
-		
-		public function MainView()
-		{
-			
-		}
 		
 		public function showScreen(screen:IView):void
 		{

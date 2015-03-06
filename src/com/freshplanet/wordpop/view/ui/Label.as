@@ -1,5 +1,7 @@
 package com.freshplanet.wordpop.view.ui
 {
+	import com.freshplanet.wordpop.utils.UIUtils;
+	
 	import flash.display.Sprite;
 	import flash.text.TextField;
 	import flash.text.TextFieldAutoSize;
@@ -51,6 +53,15 @@ package com.freshplanet.wordpop.view.ui
 			
 			if(proportionalScale)
 				super.width *= scaleY;
+		}
+		
+		public function clear():void
+		{
+			if(textField)
+			{
+				UIUtils.clearDisplayObject(textField);
+				textField = null;
+			}
 		}
 	}
 }

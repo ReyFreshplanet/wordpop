@@ -4,13 +4,13 @@ package com.freshplanet.wordpop.mediator
 	import com.freshplanet.wordpop.events.WordPopEvent;
 	import com.freshplanet.wordpop.model.CategoryModel;
 	import com.freshplanet.wordpop.model.WordPopModel;
-	import com.freshplanet.wordpop.view.GameView;
+	import com.freshplanet.wordpop.view.GamePlayView;
 	
 	import robotlegs.bender.bundles.mvcs.Mediator;
 	
 	public class GameViewMediator extends Mediator
 	{
-		[Inject] public var view:GameView;
+		[Inject] public var view:GamePlayView;
 		[Inject] public var model:WordPopModel;
 		[Inject] public var categoryModel:CategoryModel;
 		

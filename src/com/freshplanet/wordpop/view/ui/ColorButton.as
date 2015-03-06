@@ -3,6 +3,7 @@ package com.freshplanet.wordpop.view.ui
 	import com.freshplanet.wordpop.api.IButton;
 	
 	import flash.display.Sprite;
+	import flash.events.Event;
 	import flash.events.MouseEvent;
 	
 	public class ColorButton extends Sprite implements IButton
@@ -22,6 +23,14 @@ package com.freshplanet.wordpop.view.ui
 			mouseChildren = false;
 			
 			buildBackground();
+			
+			addEventListener(Event.REMOVED_FROM_STAGE, handleRemovedFromStage);
+		}
+		
+		protected function handleRemovedFromStage(event:Event):void
+		{
+			removeEventListener(MouseEvent.CLICK, handleClick);
+			removeChildren();
 		}
 		
 		private function buildBackground():void

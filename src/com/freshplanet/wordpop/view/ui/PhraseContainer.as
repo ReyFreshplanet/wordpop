@@ -76,6 +76,11 @@ package com.freshplanet.wordpop.view.ui
 			return phrase.numLetters;
 		}
 		
+		public function get numWords():int
+		{
+			return phrase.numWords;
+		}
+		
 		public function revealAllLetters():void
 		{
 			for (var a:int = 0; a < words.length; a++) 
@@ -100,8 +105,21 @@ package com.freshplanet.wordpop.view.ui
 		
 		public function clear():void
 		{
-			removeChildren();
+			for (var a:int = 0; a < words.length; a++) 
+			{
+				words[a].clear();
+			}
 			words = null;
+		}
+		
+		public function getCurrentPhrase():String
+		{
+			return phrase.text;
+		}
+		
+		public function getCurrentWrds():Vector.<Word>
+		{
+			return words;
 		}
 	}
 }

@@ -18,11 +18,12 @@ package com.freshplanet.wordpop.mediator
 		{
 			addViewListener(ViewEvent.PLAY_GAME_REQUEST, handlPlayGameRequest, ViewEvent);
 			addViewListener(ViewEvent.BUILD_COMPLETE, handleBuildComplete, ViewEvent);
+			addViewListener(ViewEvent.SHUFFLE_CATEGORIES_REQUEST, handleBuildComplete, ViewEvent);
 		}
 		
 		private function handleBuildComplete(event:ViewEvent):void
 		{
-			view.setCategories(categoryModel.getCategoryLabels());
+			view.setCategories(categoryModel.getCategoryLabels(5));
 		}
 		
 		private function handlPlayGameRequest(event:ViewEvent):void
