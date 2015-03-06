@@ -1,6 +1,6 @@
 package com.freshplanet.wordpop.model
 {
-	import com.freshplanet.wordpop.MathUtil;
+	import com.freshplanet.wordpop.utils.MathUtil;
 	import com.freshplanet.wordpop.data.Category;
 	import com.freshplanet.wordpop.data.Phrase;
 

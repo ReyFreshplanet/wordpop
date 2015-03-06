@@ -14,7 +14,7 @@ package com.freshplanet.wordpop.model
 		[Inject] public var dispatcher:IEventDispatcher;
 		[Inject] public var categoryModel:CategoryModel;
 		
-		public var version:String = "0.0.131";
+		public var version:String = "0.0.165";
 		public var dataUrl:String = "./data/wordpop_sample_categories.json";
 		public var views:Dictionary;
 		public var initialGameData:Object;

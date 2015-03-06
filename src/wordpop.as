@@ -1,6 +1,7 @@
 package
 {
 	import com.freshplanet.wordpop.core.WordPopConfig;
+	import com.freshplanet.wordpop.utils.UIUtils;
 	import com.freshplanet.wordpop.view.AbstractView;
 	import com.freshplanet.wordpop.view.MainView;
 	
@@ -25,6 +26,7 @@ package
 			super(null);
 			
 			VirtualKeyBoard.getInstance().init(this);
+			UIUtils.stage = stage;
 			
 			stage.align = StageAlign.TOP_LEFT;
 			stage.scaleMode = StageScaleMode.NO_SCALE;

@@ -1,6 +1,6 @@
 package com.freshplanet.wordpop.data
 {
-	import com.freshplanet.wordpop.MathUtil;
+	import com.freshplanet.wordpop.utils.MathUtil;
 
 	public class Category
 	{

@@ -1,4 +1,4 @@
-package com.freshplanet.wordpop
+package com.freshplanet.wordpop.utils
 {
 	public class MathUtil
 	{

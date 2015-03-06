@@ -1,6 +1,6 @@
 package com.freshplanet.wordpop.view.ui
 {
-	import com.freshplanet.wordpop.MathUtil;
+	import com.freshplanet.wordpop.utils.MathUtil;
 	
 	import flash.display.Sprite;
 	
@@ -10,7 +10,6 @@ package com.freshplanet.wordpop.view.ui
 		
 		private var value:String;
 		private var letters:Vector.<Letter>;
-		private var revealedLetters:Vector.<Letter>;
 		
 		public function Word(word:String)
 		{
@@ -34,22 +33,68 @@ package com.freshplanet.wordpop.view.ui
 			}
 			
 			letter = null;
-			revealedLetters = new Vector.<Letter>();
+		}
+		
+		public function revealFirstAndLastLetters():void
+		{
+			if(value.length > 3)
+			{
+				revealLetter(0);
+				revealLetter(letters.length-1);
+			}
+		}
+		
+		public function revealAllLetters():void
+		{
+			for (var a:int = 0; a < letters.length; a++) 
+			{
+				revealLetter(a);
+			}
 		}
 		
 		public function revealRandomLetter():void
 		{
-			var randomIndex:int = MathUtil.randomRange(0, letters.length-1);
-			var letter:Letter = letters[randomIndex];
+			var foundReliableLetter:Boolean = false;
+			var randomIndex:int;
 			
-			revealedLetters.push( letters.splice(randomIndex, 1)[0] );
-			
+			while(foundReliableLetter == false)
+			{
+				randomIndex = MathUtil.randomRange(0, letters.length-1);
+				
+				if(letters[randomIndex].isRevealed)
+					foundReliableLetter = false;
+				else
+				{
+					foundReliableLetter = true;
+					revealLetter(randomIndex);
+				}
+			}
+		}
+		
+		private function revealLetter(letterIndex:int):void
+		{
+			var letter:Letter = letters[letterIndex];
 			letter.reveal();
 		}
 		
-		public function get allReveald():Boolean
+		public function get allLettersRevealed():Boolean
 		{
-			return letters.length == 0;
+			var allShowing:Boolean = true;
+			for (var a:int = 0; a < letters.length; a++) 
+			{
+				if(!letters[a].isRevealed)
+				{
+					allShowing = false;
+					break;
+				}
+			}
+			return allShowing;
 		}
+		
+		public function get letterCount():int
+		{
+			return letters.length;
+		}
+
 	}
 }

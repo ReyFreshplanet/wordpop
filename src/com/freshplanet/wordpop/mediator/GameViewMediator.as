@@ -17,7 +17,6 @@ package com.freshplanet.wordpop.mediator
 		override public function initialize():void
 		{
 			addViewListener(ViewEvent.BUILD_COMPLETE, handleBuildComplete, ViewEvent);
-			
 			addContextListener(WordPopEvent.ON_TICK, handleTimerTick, WordPopEvent);
 		}
 		

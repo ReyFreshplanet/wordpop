@@ -18,5 +18,15 @@ package com.freshplanet.wordpop.data
 			words = text.split(" ");
 			numWords = words.length;
 		}
+		
+		public function get numLetters():int
+		{
+			var count:int = 0;
+			for (var a:int = 0; a < words.length; a++) 
+			{
+				count += String(words[a]).length;
+			}
+			return count;
+		}
 	}
 }
