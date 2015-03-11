@@ -7,6 +7,7 @@ package com.freshplanet.wordpop.view
 	import com.freshplanet.wordpop.view.ui.Label;
 	import com.freshplanet.wordpop.view.ui.PhraseContainer;
 	import com.freshplanet.wordpop.view.ui.PhraseIndicator;
+	import com.freshplanet.wordpop.view.ui.Popup;
 	import com.freshplanet.wordpop.view.ui.TimerBar;
 	import com.freshplanet.wordpop.view.ui.Word;
 	
@@ -95,20 +96,20 @@ package com.freshplanet.wordpop.view
 			
 			if(!winner)
 			{
-				
+				log(this, "player guessed correctly.");
 			}
 			else
 			{
-				
+				log(this, "player did not guess correctly.");
 			}
 			
 			if(doNextPhrase)
 			{
-				
+				log(this, "next phrase.");
 			}
 			else
 			{
-				
+				log(this, "continue current phrase.");
 			}
 			
 			//phraseContainer.revealAllLetters();
@@ -117,7 +118,7 @@ package com.freshplanet.wordpop.view
 		private function buildPhraseIndicators():void
 		{
 			if(questionIndicatorContainer)
-				UIUtils.clearDisplayObject(questionIndicatorContainer);
+				UIUtils.removeDisplayObject(questionIndicatorContainer);
 			
 			questionIndicatorContainer = new Sprite();
 			addChild(questionIndicatorContainer);
@@ -154,7 +155,7 @@ package com.freshplanet.wordpop.view
 		private function buildTimerBar():void
 		{
 			if(timerBar)
-				UIUtils.clearDisplayObject(timerBar);
+				UIUtils.removeDisplayObject(timerBar);
 			
 			timerBar = new TimerBar(phraseContainer.width);
 			timerBar.totalTime = TOTAL_TIME;
@@ -166,7 +167,7 @@ package com.freshplanet.wordpop.view
 		private function buildCategoryTitle():void
 		{
 			if(categoryTitle)
-				UIUtils.clearDisplayObject(categoryTitle);
+				UIUtils.removeDisplayObject(categoryTitle);
 			
 			categoryTitle = new Label(currentPhrase.category);
 			categoryTitle.height = stage.stageHeight * 0.1;
@@ -180,7 +181,7 @@ package com.freshplanet.wordpop.view
 			if(phraseContainer)
 			{
 				phraseContainer.clear();
-				UIUtils.clearDisplayObject(phraseContainer);
+				UIUtils.removeDisplayObject(phraseContainer);
 			}
 			
 			phraseContainer = new PhraseContainer(currentPhrase);
@@ -235,13 +236,13 @@ package com.freshplanet.wordpop.view
 			active = false;
 			
 			if(phraseContainer)
-				UIUtils.clearDisplayObject(phraseContainer);
+				UIUtils.removeDisplayObject(phraseContainer);
 			
 			if(categoryTitle)
-				UIUtils.clearDisplayObject(categoryTitle);
+				UIUtils.removeDisplayObject(categoryTitle);
 			
 			if(timerBar)
-				UIUtils.clearDisplayObject(timerBar);
+				UIUtils.removeDisplayObject(timerBar);
 		}
 	}
 }

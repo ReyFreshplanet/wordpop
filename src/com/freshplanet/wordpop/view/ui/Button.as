@@ -1,7 +1,5 @@
 package com.freshplanet.wordpop.view.ui
 {
-	
-	
 	public class Button extends ColorButton
 	{
 		private var label:Label;

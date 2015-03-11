@@ -2,7 +2,7 @@ package com.freshplanet.wordpop.mediator
 {
 	import com.freshplanet.wordpop.api.IView;
 	import com.freshplanet.wordpop.events.WordPopEvent;
-	import com.freshplanet.wordpop.view.ScreenContainerView;
+	import com.freshplanet.wordpop.view.fixed.ScreenContainerView;
 	
 	import robotlegs.bender.bundles.mvcs.Mediator;
 	

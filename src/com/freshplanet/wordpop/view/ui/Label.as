@@ -59,7 +59,7 @@ package com.freshplanet.wordpop.view.ui
 		{
 			if(textField)
 			{
-				UIUtils.clearDisplayObject(textField);
+				UIUtils.removeDisplayObject(textField);
 				textField = null;
 			}
 		}

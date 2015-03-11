@@ -1,10 +1,20 @@
-package com.freshplanet.wordpop.view
+package com.freshplanet.wordpop.view.fixed
 {
 	import com.freshplanet.wordpop.api.IView;
+	
+	import flash.display.Sprite;
+	import com.freshplanet.wordpop.view.AbstractView;
 
 	public class ScreenContainerView extends AbstractView
 	{
 		private var currentView:IView;
+		private var container:Sprite;
+		
+		public function ScreenContainerView()
+		{
+			container = new Sprite();
+			addChild(container);
+		}
 		
 		public function showScreen(screen:IView):void
 		{
@@ -14,7 +24,7 @@ package com.freshplanet.wordpop.view
 			log(this, "now showing", screen.id);
 			
 			currentView = screen;
-			addChild(currentView as AbstractView);
+			container.addChild(currentView as AbstractView);
 			
 			currentView.build();
 		}
@@ -24,7 +34,7 @@ package com.freshplanet.wordpop.view
 			var currentScreenView:AbstractView = currentView as AbstractView;
 			
 			currentView.clear();
-			removeChild(currentScreenView);
+			container.removeChild(currentScreenView);
 			currentView = null;
 			
 			if(currentScreenView.parent)

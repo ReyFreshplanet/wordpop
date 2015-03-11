@@ -48,7 +48,7 @@ package com.freshplanet.wordpop.view.ui
 			if(label)
 			{
 				label.clear();
-				UIUtils.clearDisplayObject(label);
+				UIUtils.removeDisplayObject(label);
 				label = null;
 			}
 		}

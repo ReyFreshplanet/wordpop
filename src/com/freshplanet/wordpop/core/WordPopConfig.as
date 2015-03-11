@@ -9,6 +9,7 @@ package com.freshplanet.wordpop.core
 	import com.freshplanet.wordpop.mediator.GameViewMediator;
 	import com.freshplanet.wordpop.mediator.HomeViewMediator;
 	import com.freshplanet.wordpop.mediator.LoadingViewMediator;
+	import com.freshplanet.wordpop.mediator.PopupViewMediator;
 	import com.freshplanet.wordpop.mediator.ScreenContainerViewMediator;
 	import com.freshplanet.wordpop.model.CategoryModel;
 	import com.freshplanet.wordpop.model.WordPopModel;
@@ -17,7 +18,8 @@ package com.freshplanet.wordpop.core
 	import com.freshplanet.wordpop.view.GamePlayView;
 	import com.freshplanet.wordpop.view.HomeView;
 	import com.freshplanet.wordpop.view.LoadingView;
-	import com.freshplanet.wordpop.view.ScreenContainerView;
+	import com.freshplanet.wordpop.view.fixed.PopupView;
+	import com.freshplanet.wordpop.view.fixed.ScreenContainerView;
 	import com.greensock.TweenMax;
 	
 	import flash.events.IEventDispatcher;
@@ -58,6 +60,7 @@ package com.freshplanet.wordpop.core
 			mediatorMap.map(LoadingView).toMediator(LoadingViewMediator);
 			mediatorMap.map(HomeView).toMediator(HomeViewMediator);
 			mediatorMap.map(GamePlayView).toMediator(GameViewMediator);
+			mediatorMap.map(PopupView).toMediator(PopupViewMediator);
 			
 			// startup
 			context.afterInitializing(init);
